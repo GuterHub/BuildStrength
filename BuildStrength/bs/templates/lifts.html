@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h4>Ostatni trening:</h4>
+</ul>
+{% for lift in lifts %}
+<li>Login: {{ lift.user }}</li>
+<li>Martwy ciąg: {{ lift.deadlift }}kg</li>
+<li>Wyciskanie nad głową: {{ lift.oh_press }}kg</li>
+<li>Wiosłowanie w opadzie: {{ lift.barbell_row }}kg</li>
+<li>Wyciskanie na ławce płaskiej: {{ lift.bench_press }}kg</li>
+<li>Przysiad: {{ lift.squat }}kg</li>
+<li>Podciągnięcia na drążku: {{ lift.pull_ups }} powtórzeń</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
