@@ -4,17 +4,18 @@
 
 <h4>Dzisiejszy trening:</h4>
 <form method="POST">
-<ul>
+<table>
 {% for lift in lifts %}
-<li>Przysiad: 5 x 5 x {{ lift.squat }}kg</li>
-<li><input type="checkbox" id="1" name="squat">Zaliczone</input></li>
-<li>Wyciskanie na ławce płaskiej: 5 x 5 x {{ lift.bench_press }}kg</li>
-<li><input type="checkbox" id="2" name="bench_press">Zaliczone</input></li>
-<li>Podciągnięcia na drążku: 5 x {{ lift.pull_ups }} powtórzeń</li>
+<tr><td>Przysiad: 5 x 5 x {{ lift.squat }}kg</td></tr>
+<tr><td><input type="checkbox" id="1" name="squat">Zaliczone</input></td></tr>
+<tr><td>Wyciskanie na ławce płaskiej: 5 x 5 x {{ lift.bench_press }}kg</tr>
+<tr><td><input type="checkbox" id="2" name="bench_press">Zaliczone</input></td></tr>
+<tr><td>Podciągnięcia na drążku: 5 x {{ lift.pull_ups }} powtórzeń</td></tr>
+<tr><td><input type="number" id="3" name="pull_ups" min="0" value="0">Liczba wykonanych powtórzeń</input></td></tr>
 {% endfor %}
-</ul>
+</table>
 {{ form.as_p }}
 {% csrf_token %}
-<button type="submit">Koniec Treningu</button>
+<button type="submit">Zakończ trening</button>
 </form>
 {% endblock %}

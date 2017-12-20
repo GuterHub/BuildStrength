@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from bs.views import LoginView, LogoutView, LiftsView, DayAView, DayBView
+from bs.views import (LoginView, LogoutView, LiftsView,
+                      DayAView, DayBView, MaxesView)
 
 
 urlpatterns = [
@@ -25,5 +26,6 @@ urlpatterns = [
     url(r'^lifts/', LiftsView.as_view(), name="lifts"),
     url(r'^daya/', DayAView.as_view(), name="daya"),
     url(r'^dayb/', DayBView.as_view(), name="dayb"),
+    url(r'^maxes/', MaxesView.as_view(), name="maxes"),
 
 ]

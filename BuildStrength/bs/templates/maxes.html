@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h4>Twoje oszacowane maksy:</h4>
+<table>
+    <tr><td>Martwy ciąg: {{ max_deadlift }}kg</td></tr>
+    <tr><td>Wyciskanie nad głową: {{ max_oh_press }}kg</td></tr>
+    <tr><td>Wiosłowanie w opadzie: {{ max_barbell_row }}kg</td></tr>
+    <tr><td>Przysiad: {{ max_squat }}kg</td></tr>
+    <tr><td>Wyciskanie na ławce płaskiej: {{ max_bench_press }}kg</td></tr>
+</table>
+<form action="/lifts">
+    <input type="submit" value="Powrót" />
+</form>
+{% csrf_token %}
+{% endblock %}
