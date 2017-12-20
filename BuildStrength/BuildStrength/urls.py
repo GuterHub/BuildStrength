@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from bs.views import (LoginView, LogoutView, LiftsView,
-                      DayAView, DayBView, MaxesView)
+                      DayAView, DayBView, MaxesView, ProgressView)
 
 
 urlpatterns = [
@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^daya/', DayAView.as_view(), name="daya"),
     url(r'^dayb/', DayBView.as_view(), name="dayb"),
     url(r'^maxes/', MaxesView.as_view(), name="maxes"),
+    url(r'^progress/', ProgressView.as_view(), name="progress"),
 
 ]

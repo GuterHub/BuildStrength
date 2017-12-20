@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h4>Twoje postępy:</h4>
+<table>
+{% for hist in historya %}
+    <tr><td>{{ hist.date }}</td></tr>
+    <tr><td>{{ hist.deadlift }}</td></tr>
+{% endfor %}
+</table>
+<form action="/lifts">
+    <input type="submit" value="Powrót" />
+</form>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<div id="container"></div>
+<script>
+Highcharts.chart('container', {
+
+    title: {
+        text: 'Twoje postępy:'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Obciążenie [kg]'
+        }
+    },
+    xAxis: {
+        categories: [1, 2, 3, 4, 5],
+        title: {
+            text: 'Czas'
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+        }
+    },
+
+    series: [{
+        name: 'Martwy ciąg',
+        data: [{% for hist in historya %}{{ hist.deadlift }},{% endfor %}]
+    }],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+});
+</script>
+
+{% csrf_token %}
+{% endblock %}

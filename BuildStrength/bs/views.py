@@ -133,3 +133,13 @@ class MaxesView(LoginRequiredMixin, View):
                                               "max_barbell_row": max_barbell_row,
                                               "max_bench_press": max_bench_press,
                                               "max_squat": max_squat})
+
+
+class ProgressView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
+
+    def get(self, request):
+        historya = HistoryA.objects.filter(user=request.user)
+        historyb = HistoryB.objects.filter(user=request.user)
+        return render(request, "progress.html", {"historya": historya, "historyb": historyb})
