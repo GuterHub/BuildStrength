@@ -9,5 +9,13 @@
 {% block content %}
 
 {% endblock %}
+    <footer>
+        <p>
+            {% if user.is_authenticated %}
+                Zalogowano jako: {{ user }}
+                <a href="{% url 'logout' %}">wyloguj</a>
+            {% endif %}
+        </p>
+    </footer>
 </body>
 </html>

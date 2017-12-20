@@ -2,13 +2,20 @@
 
 {% block content %}
 
-<h4>Następny trening:</h4>
-</ul>
+<h4 xmlns="http://www.w3.org/1999/html">Dzisiejszy trening:</h4>
+<form method="POST">
+<ul>
 {% for lift in lifts %}
 <li>Martwy ciąg: 5 x 5 x {{ lift.deadlift }}kg</li>
+<li><input type="checkbox" id="1" name="deadlift">Zaliczone</input></li>
 <li>Wyciskanie nad głową: 5 x 5 x {{ lift.oh_press }}kg</li>
+<li><input type="checkbox" id="2" name="oh_press">Zaliczone!</input></li>
 <li>Wiosłowanie w opadzie: 5 x 5 x {{ lift.barbell_row }}kg</li>
+<li><input type="checkbox" id="3" name="barbell_row">Zaliczone!</input></li>
 {% endfor %}
 </ul>
-
+{{ form.as_p }}
+{% csrf_token %}
+<button type="submit">Koniec Treningu</button>
+</form>
 {% endblock %}

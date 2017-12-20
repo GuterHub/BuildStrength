@@ -40,6 +40,13 @@ class LiftsView(LoginRequiredMixin, View):
         lifts = Lifts.objects.filter(user=request.user)
         return render(request, "lifts.html", {"lifts": lifts})
 
+    def post(self, request):
+        lifts = Lifts.objects.filter(user=request.user)
+        if lifts[0].last_training == "A":
+            return HttpResponseRedirect('/dayb')
+        else:
+            return HttpResponseRedirect('/daya')
+
 
 class DayAView(LoginRequiredMixin, View):
     login_url = '/login/'
@@ -49,6 +56,19 @@ class DayAView(LoginRequiredMixin, View):
         lifts = Lifts.objects.filter(user=request.user)
         return render(request, "daya.html", {"lifts": lifts})
 
+    def post(self, request):
+        lifts = Lifts.objects.filter(user=request.user)
+        for lift in lifts:
+            if "deadlift" in request.POST:
+                lift.deadlift = lift.deadlift + 2.5
+            if "oh_press" in request.POST:
+                lift.oh_press = lift.oh_press + 2.5
+            if "barbell_row" in request.POST:
+                lift.barbell_row = lift.barbell_row + 2.5
+            lift.last_training = "A"
+            lift.save()
+        return HttpResponseRedirect('/lifts')
+
 
 class DayBView(LoginRequiredMixin, View):
     login_url = '/login/'
@@ -57,3 +77,15 @@ class DayBView(LoginRequiredMixin, View):
     def get(self, request):
         lifts = Lifts.objects.filter(user=request.user)
         return render(request, "dayb.html", {"lifts": lifts})
+
+    def post(self, request):
+        lifts = Lifts.objects.filter(user=request.user)
+        for lift in lifts:
+            if "bench_press" in request.POST:
+                lift.bench_press = lift.bench_press + 2.5
+            if "squat" in request.POST:
+                lift.squat = lift.squat + 2.5
+            #lift.pull_ups = max
+            lift.last_training = "B"
+            lift.save()
+        return HttpResponseRedirect('/lifts')

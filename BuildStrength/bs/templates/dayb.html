@@ -2,13 +2,19 @@
 
 {% block content %}
 
-<h4>Ostatni trening:</h4>
-</ul>
+<h4>Dzisiejszy trening:</h4>
+<form method="POST">
+<ul>
 {% for lift in lifts %}
 <li>Przysiad: 5 x 5 x {{ lift.squat }}kg</li>
+<li><input type="checkbox" id="1" name="squat">Zaliczone</input></li>
 <li>Wyciskanie na ławce płaskiej: 5 x 5 x {{ lift.bench_press }}kg</li>
+<li><input type="checkbox" id="2" name="bench_press">Zaliczone</input></li>
 <li>Podciągnięcia na drążku: 5 x {{ lift.pull_ups }} powtórzeń</li>
 {% endfor %}
 </ul>
-
+{{ form.as_p }}
+{% csrf_token %}
+<button type="submit">Koniec Treningu</button>
+</form>
 {% endblock %}
