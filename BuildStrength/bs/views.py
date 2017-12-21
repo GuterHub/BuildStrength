@@ -76,8 +76,6 @@ class DayAView(LoginRequiredMixin, View):
             new_lifts = HistoryA.objects.create(date=date.today(), deadlift=new_deadlift,
                                                 oh_press=new_oh_press, barbell_row=new_barbell_row,
                                                 user=request.user)
-            history.date = date.today()
-            history.save()
         return HttpResponseRedirect('/lifts')
 
 
@@ -110,8 +108,6 @@ class DayBView(LoginRequiredMixin, View):
             new_lifts = HistoryB.objects.create(date=date.today(), bench_press=new_bench_press,
                                                 squat=new_squat, pull_ups=new_pull_ups,
                                                 user=request.user)
-            history.date = date.today()
-            history.save()
         return HttpResponseRedirect('/lifts')
 
 

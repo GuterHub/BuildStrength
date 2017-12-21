@@ -2,17 +2,6 @@
 
 {% block content %}
 
-<h4>Twoje postępy:</h4>
-<table>
-{% for hist in historya %}
-    <tr><td>{{ hist.date }}</td></tr>
-    <tr><td>{{ hist.deadlift }}</td></tr>
-{% endfor %}
-</table>
-<form action="/lifts">
-    <input type="submit" value="Powrót" />
-</form>
-
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -30,7 +19,8 @@ Highcharts.chart('container', {
         }
     },
     xAxis: {
-        categories: [1, 2, 3, 4, 5],
+        categories: [{% for hist in historya %}"{{ hist.date }}", {% endfor %}],
+
         title: {
             text: 'Czas'
         }
@@ -51,7 +41,24 @@ Highcharts.chart('container', {
 
     series: [{
         name: 'Martwy ciąg',
-        data: [{% for hist in historya %}{{ hist.deadlift }},{% endfor %}]
+        data:
+            [{% for hist in historya %}{{ hist.deadlift }}, {% endfor %}]
+        }, {
+        name: 'Wyciskanie nad głową',
+        data:
+            [{% for hist in historya %}{{ hist.oh_press }}, {% endfor %}]
+        }, {
+        name: 'Wiosłowanie w opadzie',
+        data:
+            [{% for hist in historya %}{{ hist.barbell_row }}, {% endfor %}]
+            }, {
+        name: 'Wyciskanie na ławce płaskiej',
+        data:
+            [{% for hist in historyb %}{{ hist.bench_press }}, {% endfor %}]
+            }, {
+        name: 'Przysiad',
+        data:
+            [{% for hist in historyb %}{{ hist.squat }}, {% endfor %}]
     }],
 
     responsive: {
@@ -70,6 +77,8 @@ Highcharts.chart('container', {
     }
 });
 </script>
-
+<form action="/lifts">
+    <input type="submit" value="Powrót" />
+</form>
 {% csrf_token %}
 {% endblock %}
