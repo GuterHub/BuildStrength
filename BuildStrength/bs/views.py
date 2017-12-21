@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import LoginForm
+from .forms import LoginForm, SignUpForm
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import Lifts, HistoryA, HistoryB
 from datetime import date
@@ -139,3 +139,25 @@ class ProgressView(LoginRequiredMixin, View):
         historya = HistoryA.objects.filter(user=request.user)
         historyb = HistoryB.objects.filter(user=request.user)
         return render(request, "progress.html", {"historya": historya, "historyb": historyb})
+
+
+class SignUpView(View):
+
+    def get(self, request):
+        form = SignUpForm()
+        return render(request, 'signup.html', {'form': form})
+
+    def post(self, request):
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            starting_lifts = Lifts.objects.create(deadlift=20, oh_press=20,
+                                              barbell_row=20, bench_press=20,
+                                              squat=20, pull_ups=5, user=user,
+                                              last_training="B", training_count=0)
+            login(request, user)
+            return redirect('/lifts')
+        return render(request, 'signup.html', {'form': form})
