@@ -10,7 +10,7 @@
 Highcharts.chart('container', {
 
     title: {
-        text: 'Twoje postępy:'
+        text: 'Martwy ciąg, wyciskanie nad głową i wiosłowanie w opadzie:'
     },
 
     yAxis: {
@@ -51,7 +51,63 @@ Highcharts.chart('container', {
         name: 'Wiosłowanie w opadzie',
         data:
             [{% for hist in historya %}{{ hist.barbell_row }}, {% endfor %}]
-            }, {
+    }],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+});
+</script>
+<br>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<div id="container2"></div>
+<script>
+Highcharts.chart('container2', {
+
+    title: {
+        text: 'Przysiad i wyciskanie na ławce płaskiej:'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Obciążenie [kg]'
+        }
+    },
+    xAxis: {
+        categories: [{% for hist in historyb %}"{{ hist.date }}", {% endfor %}],
+
+        title: {
+            text: 'Czas'
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+        }
+    },
+
+    series: [{
         name: 'Wyciskanie na ławce płaskiej',
         data:
             [{% for hist in historyb %}{{ hist.bench_press }}, {% endfor %}]
@@ -59,6 +115,65 @@ Highcharts.chart('container', {
         name: 'Przysiad',
         data:
             [{% for hist in historyb %}{{ hist.squat }}, {% endfor %}]
+    }],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+});
+</script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<div id="container3"></div>
+<script>
+Highcharts.chart('container3', {
+
+    title: {
+        text: 'Podciągnięcia na drążku:'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Powtórzenia'
+        }
+    },
+    xAxis: {
+        categories: [{% for hist in historyb %}"{{ hist.date }}", {% endfor %}],
+
+        title: {
+            text: 'Czas'
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+        }
+    },
+
+    series: [{
+        name: 'Podciągnięcia na drążku',
+        data:
+            [{% for hist in historyb %}{{ hist.pull_ups }}, {% endfor %}]
     }],
 
     responsive: {

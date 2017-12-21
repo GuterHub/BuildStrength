@@ -104,7 +104,7 @@ class DayBView(LoginRequiredMixin, View):
             lift.save()
             new_bench_press = lift.bench_press
             new_squat = lift.squat
-            new_pull_ups = lift.pull_ups
+            new_pull_ups = new_value_pull_ups
             new_lifts = HistoryB.objects.create(date=date.today(), bench_press=new_bench_press,
                                                 squat=new_squat, pull_ups=new_pull_ups,
                                                 user=request.user)
@@ -136,8 +136,8 @@ class ProgressView(LoginRequiredMixin, View):
     redirect_field_name = 'redirect_to'
 
     def get(self, request):
-        historya = HistoryA.objects.filter(user=request.user)
-        historyb = HistoryB.objects.filter(user=request.user)
+        historya = HistoryA.objects.filter(user=request.user).order_by("id")
+        historyb = HistoryB.objects.filter(user=request.user).order_by("id")
         return render(request, "progress.html", {"historya": historya, "historyb": historyb})
 
 

@@ -17,12 +17,12 @@
 <form method="POST">
 {{ form.as_p }}
 {% csrf_token %}
-<button type="submit">Następny trening</button>
+<button type="submit">Rozpocznij trening</button>
 </form>
 <form action="/maxes">
     <input type="submit" value="Oszacuj swoje maksy" />
 </form>
 <form action="/progress">
-    <input type="submit" value="Sprawdź postępy" />
+    <input type="submit" value="Sprawdź swoje postępy" />
 </form>
 {% endblock %}
