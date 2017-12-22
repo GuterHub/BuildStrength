@@ -2,20 +2,28 @@
 
 {% block content %}
 
-<h4>Dzisiejszy trening (dzień A):</h4>
+<h4 class="ml-2">Dzisiejszy trening (dzień A):</h4>
 <form method="POST">
     <ul class="list-group py-3">
+
         {% for lift in lifts %}
+
         <li class="list-group-item">Martwy ciąg: 5 x 5 x {{ lift.deadlift }}kg</li>
         <li class="list-group-item"><input type="checkbox" id="1" name="deadlift">Zaliczone</input></li>
         <li class="list-group-item">Wyciskanie nad głową: 5 x 5 x {{ lift.oh_press }}kg</li>
         <li class="list-group-item"><input type="checkbox" id="2" name="oh_press">Zaliczone!</input></li>
         <li class="list-group-item">Wiosłowanie w opadzie: 5 x 5 x {{ lift.barbell_row }}kg</li>
         <li class="list-group-item"><input type="checkbox" id="3" name="barbell_row">Zaliczone!</input></li>
+
         {% endfor %}
+
     </ul>
-{{ form.as_p }}
-{% csrf_token %}
+
+    {{ form.as_p }}
+    {% csrf_token %}
+
     <button type="submit" class="btn btn-dark mt-2" style="width:100%">Zakończ trening</button>
 </form>
+<a href="/lifts" class="btn btn-outline-dark mt-2" style="width:100%">Powrót</a>
+
 {% endblock %}

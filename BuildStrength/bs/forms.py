@@ -6,7 +6,7 @@ from .models import Maxes
 
 class LoginForm(forms.Form):
 
-    username = forms.CharField(max_length=150, label="nazwa użytkownika")
+    username = forms.CharField(max_length=150, label="login")
     password = forms.CharField(max_length=150, label="hasło", widget=forms.PasswordInput)
 
 

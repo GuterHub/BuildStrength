@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h4>Dzisiejszy trening (dzień B):</h4>
+<h4 class="ml-2">Dzisiejszy trening (dzień B):</h4>
 <form method="POST">
     <ul class="list-group py-3">
         {% for lift in lifts %}
@@ -18,4 +18,5 @@
     {% csrf_token %}
     <button type="submit" class="btn btn-dark mt-2" style="width:100%">Zakończ trening</button>
 </form>
+<a href="/lifts" class="btn btn-outline-dark mt-2" style="width:100%">Powrót</a>
 {% endblock %}
