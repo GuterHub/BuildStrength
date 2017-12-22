@@ -3,15 +3,14 @@
 {% block content %}
 
 <h4>Twoje oszacowane maksy:</h4>
-<table>
-    <tr><td>Martwy ciąg: {{ max_deadlift }}kg</td></tr>
-    <tr><td>Wyciskanie nad głową: {{ max_oh_press }}kg</td></tr>
-    <tr><td>Wiosłowanie w opadzie: {{ max_barbell_row }}kg</td></tr>
-    <tr><td>Przysiad: {{ max_squat }}kg</td></tr>
-    <tr><td>Wyciskanie na ławce płaskiej: {{ max_bench_press }}kg</td></tr>
-</table>
-<form action="/lifts">
-    <input type="submit" value="Powrót" />
-</form>
+<ul class="list-group py-3">
+    <li class="list-group-item">Martwy ciąg: {{ max_deadlift }}kg</li>
+    <li class="list-group-item">Wyciskanie nad głową: {{ max_oh_press }}kg</li>
+    <li class="list-group-item">Wiosłowanie w opadzie: {{ max_barbell_row }}kg</li>
+    <li class="list-group-item">Przysiad: {{ max_squat }}kg</li>
+    <li class="list-group-item">Wyciskanie na ławce płaskiej: {{ max_bench_press }}kg</li>
+</ul>
+
+<a href="/lifts" class="btn btn-outline-dark mt-2" style="width:100%">Powrót</a>
 {% csrf_token %}
 {% endblock %}

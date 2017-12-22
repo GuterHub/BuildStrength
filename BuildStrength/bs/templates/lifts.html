@@ -2,27 +2,26 @@
 
 {% block content %}
 
-<h4>Twoje wyniki:</h4>
-<table>
-{% for lift in lifts %}
-<tr><td>Martwy ciąg: {{ lift.deadlift }}kg</td></tr>
-<tr><td>Wyciskanie nad głową: {{ lift.oh_press }}kg</td></tr>
-<tr><td>Wiosłowanie w opadzie: {{ lift.barbell_row }}kg</td></tr>
-<tr><td>Wyciskanie na ławce płaskiej: {{ lift.bench_press }}kg</td></tr>
-<tr><td>Przysiad: {{ lift.squat }}kg</tr><td></td>
-<tr><td>Podciągnięcia na drążku: {{ lift.pull_ups }} powtórzeń</td></tr>
-<tr><td>Liczba odbytych trenigów: {{ lift.training_count }}</td></tr>
-{% endfor %}
-</table>
-<form method="POST">
-{{ form.as_p }}
-{% csrf_token %}
-<button type="submit">Rozpocznij trening</button>
-</form>
-<form action="/maxes">
-    <input type="submit" value="Oszacuj swoje maksy" />
-</form>
-<form action="/progress">
-    <input type="submit" value="Sprawdź swoje postępy" />
-</form>
+
+        <h4 class="ml-2">Twoje wyniki:</h4>
+        <ul class="list-group py-3">
+            {% for lift in lifts %}
+            <li class="list-group-item">Martwy ciąg: 5x {{ lift.deadlift }}kg</li>
+            <li class="list-group-item">Wyciskanie nad głową: 5x {{ lift.oh_press }}kg</li>
+            <li class="list-group-item">Wiosłowanie w opadzie: 5x {{ lift.barbell_row }}kg</li>
+            <li class="list-group-item">Wyciskanie na ławce płaskiej: 5x {{ lift.bench_press }}kg</li>
+            <li class="list-group-item">Przysiad: 5x {{ lift.squat }}kg</li>
+            <li class="list-group-item">Podciągnięcia na drążku: {{ lift.pull_ups }} powtórzeń</li>
+            <li class="list-group-item">Liczba odbytych trenigów: {{ lift.training_count }}</li>
+            {% endfor %}
+        </ul>
+
+        <form method="POST">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-dark mt-2" style="width:100%">Rozpocznij trening</button>
+        </form>
+        <a href="/maxes" class="btn btn-outline-dark mt-2" style="width:100%">Oszacuj swoje maksy</a>
+        <a href="/progress" class="btn btn-outline-dark mt-2" style="width:100%">Sprawdź swoje postępy</a>
+
 {% endblock %}

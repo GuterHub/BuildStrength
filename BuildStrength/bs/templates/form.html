@@ -3,12 +3,20 @@
 {% block content %}
 
 <h4>Logowanie:</h4>
+
+
 <form method="POST">
-{{ form.as_p }}
-{% csrf_token %}
-<button type="submit">Zaloguj</button>
+    <div class="form-group ml-3">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-dark mt-2" style="width:100%">Zaloguj</button>
+    </div>
 </form>
-<form action="/signup">
-    <input type="submit" value="Załóż konto" />
-</form>
+
+<div class="form-group">
+    <a href="/signup" class="btn btn-dark ml-3" style="width:100%">Załóż konto</a>
+</div>
+
+
+
 {% endblock %}

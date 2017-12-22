@@ -2,20 +2,20 @@
 
 {% block content %}
 
-<h4 xmlns="http://www.w3.org/1999/html">Dzisiejszy trening:</h4>
+<h4>Dzisiejszy trening:</h4>
 <form method="POST">
-    <table>
+    <ul class="list-group py-3">
         {% for lift in lifts %}
-        <tr><td>Martwy ciąg: 5 x 5 x {{ lift.deadlift }}kg</td></tr>
-        <tr><td><input type="checkbox" id="1" name="deadlift">Zaliczone</input></td></tr>
-        <tr><td>Wyciskanie nad głową: 5 x 5 x {{ lift.oh_press }}kg</td></tr>
-        <tr><td><input type="checkbox" id="2" name="oh_press">Zaliczone!</input></td></tr>
-        <tr><td>Wiosłowanie w opadzie: 5 x 5 x {{ lift.barbell_row }}kg</td></tr>
-        <tr><td><input type="checkbox" id="3" name="barbell_row">Zaliczone!</input></td></tr>
+        <li class="list-group-item">Martwy ciąg: 5 x 5 x {{ lift.deadlift }}kg</li>
+        <li class="list-group-item"><input type="checkbox" id="1" name="deadlift">Zaliczone</input></li>
+        <li class="list-group-item">Wyciskanie nad głową: 5 x 5 x {{ lift.oh_press }}kg</li>
+        <li class="list-group-item"><input type="checkbox" id="2" name="oh_press">Zaliczone!</input></li>
+        <li class="list-group-item">Wiosłowanie w opadzie: 5 x 5 x {{ lift.barbell_row }}kg</li>
+        <li class="list-group-item"><input type="checkbox" id="3" name="barbell_row">Zaliczone!</input></li>
         {% endfor %}
-    </table>
+    </ul>
 {{ form.as_p }}
 {% csrf_token %}
-    <button type="submit">Zakończ trening</button>
+    <button type="submit" class="btn btn-dark mt-2" style="width:100%">Zakończ trening</button>
 </form>
 {% endblock %}

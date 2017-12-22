@@ -156,7 +156,7 @@ class SignUpView(View):
             user = authenticate(username=username, password=raw_password)
             starting_lifts = Lifts.objects.create(deadlift=20, oh_press=20,
                                               barbell_row=20, bench_press=20,
-                                              squat=20, pull_ups=5, user=user,
+                                              squat=20, pull_ups=0, user=user,
                                               last_training="B", training_count=0)
             login(request, user)
             return redirect('/lifts')
