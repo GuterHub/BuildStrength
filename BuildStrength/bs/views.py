@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import LoginForm, SignUpForm
+from .forms import LoginForm, SignUpForm, TestMaxesForm
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import Lifts, HistoryA, HistoryB
+from .models import Lifts, HistoryA, HistoryB, Maxes
 from datetime import date
 
 
@@ -161,3 +161,32 @@ class SignUpView(View):
             login(request, user)
             return redirect('/lifts')
         return render(request, 'signup.html', {'form': form})
+
+
+class TestMaxesView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
+
+    def get(self, request):
+        maxes = Maxes.objects.filter(user=request.user).order_by("-id").first()
+        form = TestMaxesForm(instance=maxes)
+        return render(request, 'testmaxes.html', {'form': form})
+
+    def post(self, request):
+        maxes = Maxes.objects.filter(user=request.user).order_by("-id").first()
+        form = TestMaxesForm(request.POST, instance=maxes)
+        if form.is_valid():
+            max = form.save(commit=False)
+            max.user = request.user
+            max.save()
+            return redirect('/realmaxes')
+        return render(request, 'testmaxes.htm', {'form': form})
+
+
+class RealMaxesView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
+
+    def get(self, request):
+        real_maxes = Maxes.objects.filter(user=request.user).order_by("id").last()
+        return render(request, 'realmaxes.html', {'real_maxes': real_maxes})

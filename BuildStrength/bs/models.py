@@ -34,3 +34,13 @@ class HistoryB(models.Model):
     bench_press = models.FloatField(default="0")
     squat = models.FloatField(default="0")
     pull_ups = models.IntegerField(default="0")
+
+
+class Maxes(models.Model):
+    user = models.ForeignKey(User)
+    deadlift = models.FloatField(default="0")
+    oh_press = models.FloatField(default="0")
+    barbell_row = models.FloatField(default="0")
+    bench_press = models.FloatField(default="0")
+    squat = models.FloatField(default="0")
+    pull_ups = models.IntegerField(default="0")

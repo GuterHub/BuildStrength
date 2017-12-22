@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Sprawdź swoją siłę i wypełnij formularz:</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-dark mt-2" style="width:100%">Potwierdź wyniki</button>
+</form>
+<a href="/lifts" class="btn btn-outline-dark mt-2" style="width:100%">Powrót</a>
+{% endblock %}

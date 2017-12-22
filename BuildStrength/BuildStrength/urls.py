@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from bs.views import (LoginView, LogoutView, LiftsView,
                       DayAView, DayBView, MaxesView, ProgressView,
-                      SignUpView)
+                      SignUpView, TestMaxesView, RealMaxesView)
 
 
 urlpatterns = [
@@ -30,5 +30,7 @@ urlpatterns = [
     url(r'^maxes/', MaxesView.as_view(), name="maxes"),
     url(r'^progress/', ProgressView.as_view(), name="progress"),
     url(r'^signup/', SignUpView.as_view(), name="signup"),
+    url(r'^testmaxes/', TestMaxesView.as_view(), name="testmaxes"),
+    url(r'^realmaxes/', RealMaxesView.as_view(), name="realmaxes"),
 
 ]
