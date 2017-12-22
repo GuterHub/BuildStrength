@@ -2,6 +2,7 @@
 
 {% block content %}
 <h3>Twoje rekordy:</h3>
+    {% if real_maxes %}
     <ul class="list-group py-3">
         <li class="list-group-item">Martwy ciąg: {{ real_maxes.deadlift }}kg</li>
         <li class="list-group-item">Wyciskanie nad głową: {{ real_maxes.oh_press }}kg</li>
@@ -10,5 +11,9 @@
         <li class="list-group-item">Przysiad: {{ real_maxes.squat }}kg</li>
         <li class="list-group-item">Podciągnięcia na drążku: {{ real_maxes.pull_ups }} powtórzeń</li>
     </ul>
+    {% else %}
+        <p> Nie masz jeszcze swoich rekordów.</p>
+        <a href="/testmaxes" class="btn btn-outline-dark mt-2" style="width:100%">Pobij rekord!</a>
+    {% endif %}
     <a href="/lifts" class="btn btn-outline-dark mt-2" style="width:100%">Powrót</a>
 {% endblock %}
