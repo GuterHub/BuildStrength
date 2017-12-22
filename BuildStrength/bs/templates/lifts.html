@@ -11,7 +11,7 @@
             <li class="list-group-item">Wiosłowanie w opadzie: 5x {{ lift.barbell_row }}kg</li>
             <li class="list-group-item">Wyciskanie na ławce płaskiej: 5x {{ lift.bench_press }}kg</li>
             <li class="list-group-item">Przysiad: 5x {{ lift.squat }}kg</li>
-            <li class="list-group-item">Podciągnięcia na drążku: {{ lift.pull_ups }} powtórzeń</li>
+            <li class="list-group-item">Podciągnięcia na drążku: {{ lift.pull_ups }}</li>
             <li class="list-group-item">Liczba odbytych trenigów: {{ lift.training_count }}</li>
             {% endfor %}
         </ul>
@@ -23,6 +23,6 @@
         </form>
         <a href="/maxes" class="btn btn-outline-dark mt-2" style="width:100%">Oszacuj swoje maksy</a>
         <a href="/progress" class="btn btn-outline-dark mt-2" style="width:100%">Sprawdź swoje postępy</a>
+        <a href="/realmaxes" class="btn btn-outline-dark mt-2" style="width:100%">Twoje rekordy</a>
         <a href="/testmaxes" class="btn btn-outline-dark mt-2" style="width:100%">Pobij rekord!</a>
-
 {% endblock %}

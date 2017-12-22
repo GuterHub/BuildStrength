@@ -96,15 +96,15 @@ class DayBView(LoginRequiredMixin, View):
             if "squat" in request.POST:
                 lift.squat = lift.squat + 2.5
             if "pull_ups" in request.POST:
-                new_value_pull_ups = int(request.POST.get("pull_ups"))
-                if new_value_pull_ups > lift.pull_ups:
-                    lift.pull_ups = new_value_pull_ups
+                new_pull_ups = int(request.POST.get("pull_ups"))
+                if new_pull_ups > lift.pull_ups:
+                    lift.pull_ups = new_pull_ups
             lift.last_training = "B"
             lift.training_count += 1
             lift.save()
             new_bench_press = lift.bench_press
             new_squat = lift.squat
-            new_pull_ups = new_value_pull_ups
+            new_pull_ups = lift.pull_ups
             new_lifts = HistoryB.objects.create(date=date.today(), bench_press=new_bench_press,
                                                 squat=new_squat, pull_ups=new_pull_ups,
                                                 user=request.user)
